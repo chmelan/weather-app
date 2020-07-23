@@ -12,7 +12,6 @@ class App extends React.Component {
     this.getWeatherGif("rain");
   }
   getWeather = async (location) => {
-    this.updateError(true);
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=a3e0ba4476d1096ca94921c3346150b9`,
       { mode: "cors" }
