@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import WeatherDisplay from "./WeatherDisplay";
 import WeatherForm from "./WeatherForm";
+import ErrorMessage from "./ErrorMessage";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends React.Component {
     this.state = { tempMode: "F" };
   }
   componentDidMount() {
-    this.getCompleteWeather("lancaster");
+    this.getCompleteWeather("lacaster");
   }
   getWeather = async (location) => {
     const response = await fetch(
@@ -62,17 +63,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <WeatherForm getCompleteWeather={this.getCompleteWeather} />
-        {this.state.weatherError ? (
-          <Fragment>
-            <div className="weatherError">
-              There was a problem grabbing the weather
-            </div>
-            <img
-              src="https://media.giphy.com/media/mq5y2jHRCAqMo/giphy.gif"
-              alt="GIF of tiled error messages"
-            />
-          </Fragment>
-        ) : null}
+        {this.state.weatherError ? <ErrorMessage /> : null}
 
         {this.state.weatherData ? (
           <WeatherDisplay

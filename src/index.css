@@ -97,3 +97,44 @@ body {
   grid-column: 2/3;
   grid-row: 2/7;
 }
+.errorMessageContainer {
+  text-align: center;
+  width: 50%;
+
+  background: #c0c0c0;
+  border-width: 1px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
+  padding: 1px;
+  position: absolute;
+  left: 25%;
+  bottom: 25%;
+}
+
+.errorMessageContainer > div {
+  background-color: #000080;
+  color: white;
+  display: flex;
+  height: 30px;
+  padding: 1px;
+}
+.errorMessageContainer > div > h2 {
+  margin: 0px auto 0px 5px;
+}
+.errorMessageContainer > div > button {
+  margin: 2px 2px 2px 0;
+  float: right;
+  width: 28px;
+  height: 28px;
+  background: #c0c0c0;
+  border-width: 1px;
+  border-color: #808080 #808080 #ffffff #ffffff;
+  padding: 0;
+  font-size: 20px;
+  font-family: tahoma;
+  text-align: center;
+  transform: rotate(90deg);
+}
+.errorMessageContainer > img {
+  width: 50%;
+}
