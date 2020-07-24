@@ -5,7 +5,7 @@ import WeatherForm from "./WeatherForm";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tempMode: "farenheit" };
+    this.state = { tempMode: "F" };
   }
 
   getWeather = async (location) => {
@@ -44,20 +44,21 @@ class App extends React.Component {
     this.getWeatherGif(weatherData.weather[0].main);
   };
 
-  updateWeatherError(error) {
+  updateWeatherError = (error) => {
     this.setState({ weatherError: error });
-  }
-  updateWeatherData(data) {
+  };
+  updateWeatherData = (data) => {
     this.setState({ weatherData: data });
-  }
-  updateWeatherGif(url) {
+  };
+  updateWeatherGif = (url) => {
     this.setState({ weatherGif: url });
-  }
+  };
+  updateTempMode = (mode) => {
+    this.setState({ tempMode: mode });
+  };
   render() {
     return (
       <div className="app">
-        <button onClick={() => this.getWeatherGif("rain")}>Click ME</button>
-
         <WeatherForm getCompleteWeather={this.getCompleteWeather} />
         {this.state.weatherError ? (
           <Fragment>
@@ -76,6 +77,7 @@ class App extends React.Component {
             weatherData={this.state.weatherData}
             tempMode={this.state.tempMode}
             weatherGif={this.state.weatherGif}
+            updateTempMode={this.updateTempMode}
           />
         ) : null}
       </div>
