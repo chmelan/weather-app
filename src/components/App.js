@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import WeatherDisplay from "./WeatherDisplay";
 import WeatherForm from "./WeatherForm";
 
@@ -17,29 +17,58 @@ class App extends React.Component {
     if (!response.ok) {
       this.updateWeatherError(true);
       this.updateWeatherData(null);
-      return;
+      return "error";
     }
     this.updateWeatherError(false);
     const weatherData = await response.json();
     this.updateWeatherData(weatherData);
-    console.log(weatherData);
+    return weatherData;
   };
+
+  // code for gathering weather gifs
+  getWeatherGif = async (weather) => {
+    const response = await fetch(
+      `https://api.giphy.com/v1/gifs/translate?api_key=AEepGv1Y4EwvuicBz5PnylRLHRS5Xruc&s=${weather}`,
+      { mode: "cors" }
+    );
+
+    const weatherGifData = await response.json();
+    console.log(weatherGifData.data.images.original.url);
+
+    this.updateWeatherGif(weatherGifData.data.images.original.url);
+  };
+
+  getCompleteWeather = async (location) => {
+    const weatherData = await this.getWeather(location);
+    if (weatherData === "error") return;
+    this.getWeatherGif(weatherData.weather[0].main);
+  };
+
   updateWeatherError(error) {
     this.setState({ weatherError: error });
   }
   updateWeatherData(data) {
     this.setState({ weatherData: data });
   }
+  updateWeatherGif(url) {
+    this.setState({ weatherGif: url });
+  }
   render() {
     return (
       <div className="app">
-        <button onClick={() => this.getWeather("lancaster")}>Click ME</button>
+        <button onClick={() => this.getWeatherGif("rain")}>Click ME</button>
 
-        <WeatherForm getCompleteWeather={this.getWeather} />
+        <WeatherForm getCompleteWeather={this.getCompleteWeather} />
         {this.state.weatherError ? (
-          <div className="weatherError">
-            There was a problem grabbing the weather
-          </div>
+          <Fragment>
+            <div className="weatherError">
+              There was a problem grabbing the weather
+            </div>
+            <img
+              src="https://media.giphy.com/media/mq5y2jHRCAqMo/giphy.gif"
+              alt="GIF of tiled error messages"
+            />
+          </Fragment>
         ) : null}
 
         {this.state.weatherData ? (
