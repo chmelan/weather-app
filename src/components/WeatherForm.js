@@ -8,6 +8,7 @@ function WeatherForm(props) {
   };
   return (
     <nav className="topNav">
+      <h1>Weather Pro Version 1997 v1.3</h1>
       <form>
         <input
           type="text"
