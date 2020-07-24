@@ -7,7 +7,9 @@ class App extends React.Component {
     super(props);
     this.state = { tempMode: "F" };
   }
-
+  componentDidMount() {
+    this.getCompleteWeather("lancaster");
+  }
   getWeather = async (location) => {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=a3e0ba4476d1096ca94921c3346150b9`,
