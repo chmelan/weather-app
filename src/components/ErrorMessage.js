@@ -1,6 +1,4 @@
-import React from "react";
-
-function ErrorMessage(props) {
+const ErrorMessage = () => {
   return (
     <div className="errorMessageContainer">
       <div>
@@ -12,10 +10,10 @@ function ErrorMessage(props) {
       </h3>
       <img
         src="https://media.giphy.com/media/mq5y2jHRCAqMo/giphy.gif"
-        alt="GIF of tiled error messages"
+        alt="tiled windows 97 error messages"
       />
     </div>
   );
-}
+};
 
 export default ErrorMessage;

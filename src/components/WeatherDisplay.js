@@ -1,75 +1,54 @@
-import React from "react";
 import { kelvinToFarenheit, kelvinToCelcius } from "../helpers";
 
-class WeatherDisplay extends React.Component {
-  render() {
-    return (
-      <div className="weatherDisplay">
-        <div className="wDHeader">
-          <h2>{this.props.weatherData.name} Weather</h2>
-          <div className="tempBtnContainer">
-            <button
-              value="C"
-              className={
-                this.props.tempMode === "C"
-                  ? "tempBtn tempBtnActive"
-                  : "tempBtn"
-              }
-              onClick={() => this.props.updateTempMode("C")}
-            >
-              °C
-            </button>
-            <button
-              value="F"
-              className={
-                this.props.tempMode === "F"
-                  ? "tempBtn tempBtnActive"
-                  : "tempBtn"
-              }
-              onClick={() => this.props.updateTempMode("F")}
-            >
-              °F
-            </button>
-          </div>
+const WeatherDisplay = ({ weatherData, tempMode, weatherGif, setTempMode }) => {
+  return (
+    <div className="weatherDisplay">
+      <div className="wDHeader">
+        <h2>{weatherData.name} Weather</h2>
+        <div className="tempBtnContainer">
+          <button
+            className={tempMode === "C" ? "tempBtn tempBtnActive" : "tempBtn"}
+            onClick={() => setTempMode("C")}
+          >
+            °C
+          </button>
+          <button
+            className={tempMode === "F" ? "tempBtn tempBtnActive" : "tempBtn"}
+            onClick={() => setTempMode("F")}
+          >
+            °F
+          </button>
         </div>
-        <h3 style={{ textTransform: "capitalize" }}>
-          {this.props.weatherData.weather[0].description}
-        </h3>
-        <h3>
-          Temperature:{" "}
-          {this.props.tempMode === "F"
-            ? kelvinToFarenheit(this.props.weatherData.main.temp).toFixed(1) +
-              "°F"
-            : kelvinToCelcius(this.props.weatherData.main.temp).toFixed(1) +
-              "°C"}
-        </h3>
-        <h3>
-          Range:{" "}
-          {this.props.tempMode === "F"
-            ? kelvinToFarenheit(this.props.weatherData.main.temp_min).toFixed(
-                1
-              ) + "°F"
-            : kelvinToCelcius(this.props.weatherData.main.temp_min).toFixed(1) +
-              "°C"}{" "}
-          -{" "}
-          {this.props.tempMode === "F"
-            ? kelvinToFarenheit(this.props.weatherData.main.temp_max).toFixed(
-                1
-              ) + "°F"
-            : kelvinToCelcius(this.props.weatherData.main.temp_max).toFixed(1) +
-              "°C"}
-        </h3>
-
-        <h3>Humidity: {this.props.weatherData.main.humidity}%</h3>
-        <h3>Pressure: {this.props.weatherData.main.pressure}kPa</h3>
-        <img
-          className="weatherGIF"
-          src={this.props.weatherGif}
-          alt="GIF of current weather"
-        />
       </div>
-    );
-  }
-}
+      <h3 style={{ textTransform: "capitalize" }}>
+        {weatherData.weather[0].description}
+      </h3>
+      <h3>
+        Temperature:{" "}
+        {tempMode === "F"
+          ? kelvinToFarenheit(weatherData.main.temp).toFixed(1) + "°F"
+          : kelvinToCelcius(weatherData.main.temp).toFixed(1) + "°C"}
+      </h3>
+      <h3>
+        Range:{" "}
+        {tempMode === "F"
+          ? kelvinToFarenheit(weatherData.main.temp_min).toFixed(1) + "°F"
+          : kelvinToCelcius(weatherData.main.temp_min).toFixed(1) + "°C"}{" "}
+        -{" "}
+        {tempMode === "F"
+          ? kelvinToFarenheit(weatherData.main.temp_max).toFixed(1) + "°F"
+          : kelvinToCelcius(weatherData.main.temp_max).toFixed(1) + "°C"}
+      </h3>
+
+      <h3>Humidity: {weatherData.main.humidity}%</h3>
+      <h3>Pressure: {weatherData.main.pressure}kPa</h3>
+      <img
+        className="weatherGIF"
+        src={weatherGif}
+        alt="GIF of current weather"
+      />
+    </div>
+  );
+};
 
 export default WeatherDisplay;
