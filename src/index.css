@@ -1,139 +1,263 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* HTML styles */
 img {
   max-width: 100%;
   max-height: 100%;
 }
-h1 {
-  margin: 0px auto 0px 0px;
+.hidden-mobile {
+  display: none;
 }
-body {
-  background-image: url("https://media.giphy.com/media/KwZoSJlvep6Vy/giphy.gif");
-  background-size: cover;
-  font-family: tahoma;
-  margin: 0;
-}
-.app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* DESKTOP STYLES  */
+@media (min-width: 767px) {
+  .weather-display-container {
+    max-width: 760px;
+  }
+  .hidden-mobile {
+    display: block;
+    margin-right: auto;
+  }
+  .nav-icon {
+    margin-right: 0px !important;
+  }
 }
 
-.topNav {
+/* General Styles  */
+.app {
   width: 100%;
-  height: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-image: url("https://media.giphy.com/media/13bGgH9VnEDsuA/giphy.gif");
+  background-size: cover;
+  font-family: "Microsoft Sans Serif";
+  background-repeat: repeat-y;
+  gap: 8px;
+}
+
+/* Utility Styles */
+.windows-container {
   background: #c0c0c0;
-  border-width: 1px;
+  box-sizing: border-box;
   border-color: #ffffff #808080 #808080 #ffffff;
   border-style: solid;
-  padding: 1px;
+  border-width: 1px;
+}
+
+.windows-button {
+  box-sizing: border-box;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  background: #c0c0c0;
+  padding: 2px;
+}
+
+.windows-button-inactive {
+  background-color: #a0a0a0;
+}
+.windows-button:active {
+  border-color: #ddd #707070 #707070 #ddd;
+}
+
+/* Nav Bar */
+
+.nav-icon {
+  margin-right: auto;
+}
+.search-icon {
+  height: 30px;
+}
+.topNav {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 2px 5px 2px 5px;
 }
+
 .topNav > input {
   border: inset 2px;
-  height: 25px;
   font-size: 20px;
-  margin-right: 10px;
-}
-.topNav > button {
-  margin: 2px 10px 2px 2px;
-  float: right;
-  height: 28px;
-  background: #c0c0c0;
-  border-width: 1px;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  padding: 0px 25px 0px 25px;
-  font-size: 20px;
-
-  text-align: center;
-}
-.weatherDisplay {
-  text-align: left;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 50%;
-  background: #c0c0c0;
-  border-width: 1px;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  border-style: solid;
-  padding: 1px;
-  position: absolute;
-  left: 25%;
-  bottom: 25%;
-}
-.wDHeader {
-  background-color: #000080;
-  color: white;
-  grid-column: 1/3;
-  display: flex;
-  height: 30px;
-  padding: 1px;
-}
-.wDHeader > h2 {
-  margin: 0px;
-  margin-right: auto;
-}
-.wDHeader > div > button {
-  margin: 2px 2px 2px 0;
-  float: right;
-  width: 28px;
-  height: 28px;
-  background: #c0c0c0;
-  border-width: 1px;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  padding: 0;
-  font-size: 20px;
-  font-family: tahoma;
-  text-align: center;
 }
 
-.tempBtnActive {
-  background-color: red !important;
-}
-.weatherGIF {
+/* Weather Display */
+
+.weather-gif {
   align-self: center;
-  grid-column: 2/3;
-  grid-row: 2/7;
-}
-
-.errorMessageContainer {
-  text-align: center;
-  width: 50%;
-  background: #c0c0c0;
-  border-width: 1px;
+  box-sizing: border-box;
+  object-fit: fill;
+  width: 200px;
+  height: 150px;
+  border: inset 4px;
   border-color: #ffffff #808080 #808080 #ffffff;
-  border-style: solid;
-  padding: 1px;
-  position: absolute;
-  left: 25%;
-  bottom: 25%;
+}
+.weather-gif-container {
+  box-sizing: border-box;
+  align-self: center;
+  border: 4px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 20px;
 }
 
-.errorMessageContainer > div {
+.weather-display-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  padding: 2px;
+  gap: 8px;
+  height: 100%;
+}
+
+.weather-display-header {
+  box-sizing: border-box;
+  width: 100%;
   background-color: #000080;
   color: white;
+  padding: 5px;
   display: flex;
-  height: 30px;
-  padding: 1px;
+  justify-content: space-between;
+  align-items: center;
 }
-.errorMessageContainer > div > h2 {
-  margin: 0px auto 0px 5px;
+
+fieldset {
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px inset;
+  padding: 8px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-.errorMessageContainer > div > button {
-  margin: 2px 2px 2px 0;
-  float: right;
-  width: 28px;
-  height: 28px;
-  background: #c0c0c0;
-  border-width: 1px;
-  border-color: #808080 #808080 #ffffff #ffffff;
-  padding: 0;
+fieldset > ul > li {
+  font-size: 12px;
+}
+/* widget */
+.widget-container {
+  box-sizing: border-box;
+  display: flex;
   font-size: 20px;
-  font-family: tahoma;
-  text-align: center;
-  transform: rotate(90deg);
+  align-items: center;
+  gap: 4px;
 }
-.errorMessageContainer > img {
-  width: 50%;
+.widget-temp {
+  font-size: 24px;
+  display: flex;
+}
+.widget-unit {
+  align-self: flex-start;
+  font-size: 18px;
+}
+/* clippy */
+.clippy {
+  background: none;
+  border: none;
+  position: fixed;
+  right: 2%;
+  bottom: 7%;
+}
+
+.clippy-popup {
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffcb;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+.clippy-popup-arrow {
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ffffcb !important;
+  bottom: 0px;
+  left: 219.203px;
+}
+
+/* React Tabs */
+.data-container {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 50vh;
+}
+
+.react-tabs__tab-list {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -2px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.react-tabs__tab--selected {
+  color: black;
+  border-radius: 5px 5px 0 0;
+  background: #c0c0c0;
+  box-sizing: border-box;
+  border-color: #ffffff #808080 #c0c0c0 #ffffff;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.react-tabs__tab:focus {
+  outline: none;
+  box-sizing: border-box;
+}
+
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: #c0c0c0;
+  box-sizing: border-box;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  padding: 20px;
+  gap: 4px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  gap: 16px;
+}
+.github-icon {
+  height: 20px;
 }
