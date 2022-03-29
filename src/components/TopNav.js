@@ -1,5 +1,5 @@
 import { useState } from "react";
-import searchIcon from "../images/globe_map-0.png";
+import searchIcon from "../images/search_web-0.png";
 import windowsLogo from "../images/windows-0.png";
 
 const TopNav = ({ getCompleteWeather, getGeo }) => {
