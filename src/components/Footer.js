@@ -1,3 +1,5 @@
+import githubLogo from "../images/GitHub-Mark-32px.png";
+
 const Footer = ({ handlePlayPause, audioIsPlaying }) => {
   return (
     <footer className="footer windows-container">
@@ -16,11 +18,7 @@ const Footer = ({ handlePlayPause, audioIsPlaying }) => {
         target="_blank"
         rel="noreferrer"
       >
-        <img
-          className="github-icon"
-          src="/GitHub-Mark-32px.png"
-          alt="github logo"
-        />
+        <img className="github-icon" src={githubLogo} alt="github logo" />
       </a>
     </footer>
   );
