@@ -75,6 +75,7 @@ const App = () => {
         handlePlayPause={handlePlayPause}
         audioIsPlaying={audioIsPlaying}
       /> */}
+
       <Footer
         handlePlayPause={handlePlayPause}
         audioIsPlaying={audioIsPlaying}
