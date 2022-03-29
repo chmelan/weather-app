@@ -9,7 +9,9 @@ const TopNav = ({ getCompleteWeather, getGeo }) => {
     if (formValue !== "") {
       getCompleteWeather(formValue);
       e.preventDefault();
+      return;
     }
+    e.preventDefault();
   };
 
   return (
@@ -18,22 +20,24 @@ const TopNav = ({ getCompleteWeather, getGeo }) => {
       <h1 className="hidden-mobile">Weather Pro Version 1998 v1.3</h1>
 
       <label htmlFor="location" title="Location" />
-      <input
-        type="text"
-        name="location"
-        id="location"
-        value={formValue}
-        placeholder="Please type a city"
-        onChange={(e) => setFormValue(e.target.value)}
-      />
+      <form>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          value={formValue}
+          placeholder="Please type a city"
+          onChange={(e) => setFormValue(e.target.value)}
+        />
 
-      <button
-        className="windows-button search-icon"
-        onClick={handleSubmit}
-        title="Get Weather"
-      >
-        <img src={searchIcon} alt="globe with magnifying glass" />
-      </button>
+        <button
+          className="windows-button search-icon"
+          onClick={handleSubmit}
+          title="Get Weather"
+        >
+          <img src={searchIcon} alt="globe with magnifying glass" />
+        </button>
+      </form>
     </nav>
   );
 };

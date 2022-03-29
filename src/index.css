@@ -85,8 +85,11 @@ img {
   gap: 10px;
   padding: 2px 5px 2px 5px;
 }
-
-.topNav > input {
+.topNav > form {
+  display: flex;
+  gap: 8px;
+}
+.topNav > form > input {
   border: inset 2px;
   font-size: 20px;
 }
